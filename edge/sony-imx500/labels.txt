@@ -1,0 +1,8 @@
+dislike
+fist
+like
+no_gesture
+one
+palm
+three
+two_up

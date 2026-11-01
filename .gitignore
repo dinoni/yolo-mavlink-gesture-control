@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# Large datasets and generated data
+training/data/raw/
+training/data/processed/
+data/
+*.zip
+
+# Model artifacts (publish separately, if appropriate)
+*.pt
+*.onnx
+*.tflite
+*.engine
+*.pbtxt
+*.blob
+
+# Generated outputs and local logs
+captured_images/
+gesture_logs/
+runs/
+experiments/*/weights/
+*.log
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

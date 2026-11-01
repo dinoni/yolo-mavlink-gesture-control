@@ -1,0 +1,22 @@
+{
+  "Memory Report": {
+    "Name": "model_imx",
+    "Runtime Memory Physical Size": "2.96MB",
+    "Model Memory Physical Size": "2.56MB",
+    "Reserved Memory": "1.00KB",
+    "Memory Usage": "5.52MB",
+    "Total Memory Available On Chip": "8.00MB",
+    "Memory Utilization": "70%",
+    "Fit In Chip": true,
+    "Input Persistent": false,
+    "Networks": [
+      {
+        "Hash": "model_imx",
+        "Name": "model_imx",
+        "Runtime Memory Physical Size": "2.96MB",
+        "Model Memory Physical Size": "2.56MB",
+        "Input Persistence Cost": "0B"
+      }
+    ]
+  }
+}
