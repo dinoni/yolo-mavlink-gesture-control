@@ -89,7 +89,3 @@ Repozitorij namjerno ne sadrži:
 - binarni `network.rpk` model, lokalne logove i eventualne tajne
 
 Veliki modeli mogu se kasnije objaviti zasebno, uz verziju, checksum i upute za preuzimanje.
-
-## Licenca
-
-Licenca će biti odabrana prije javne objave konačne verzije.
