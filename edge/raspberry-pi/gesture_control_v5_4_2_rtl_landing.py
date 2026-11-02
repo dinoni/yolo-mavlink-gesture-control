@@ -22,8 +22,11 @@ from safety_manager_v2 import (
 # CONFIGURATION - SITL ONLY
 # =====================================================
 
-MODEL_PATH = "/home/dino/imx500_output/network.rpk"
-MAVLINK_ADDRESS = "udpin:0.0.0.0:14550"
+MODEL_PATH = os.environ.get("IMX500_MODEL_PATH")
+MAVLINK_ADDRESS = os.environ.get(
+    "MAVLINK_ADDRESS",
+    "udpin:0.0.0.0:14550",
+)
 
 CLASSES = [
     "dislike",
@@ -854,6 +857,12 @@ def detect_gesture(frame, metadata, imx500):
 # =====================================================
 
 try:
+    if not MODEL_PATH:
+        raise RuntimeError(
+            "IMX500_MODEL_PATH is not set. "
+            "Set it to the path of the local network.rpk model."
+        )
+
     master = mavutil.mavlink_connection(
         MAVLINK_ADDRESS,
         source_system=250,

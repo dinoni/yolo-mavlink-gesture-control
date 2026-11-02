@@ -7,6 +7,8 @@
 
 cd "$PBS_O_WORKDIR"
 
+PROJECT_ROOT="${PROJECT_ROOT:?Set PROJECT_ROOT to the Supek project directory}"
+
 module load scientific/pytorch/2.0.0
 
 echo "=== HOST ==="
@@ -20,16 +22,16 @@ echo "=== TRAINING YOLO11n ==="
 apptainer exec --nv "$IMAGE_PATH" python3 -c "
 from ultralytics import YOLO
 
-model = YOLO('/lustre/home/dterman/diplomski/models/yolo11n.pt')
+model = YOLO('${PROJECT_ROOT}/models/yolo11n.pt')
 
 model.train(
-    data='/lustre/home/dterman/diplomski/dataset/data.yaml',
+    data='${PROJECT_ROOT}/dataset/data.yaml',
     epochs=100,
     imgsz=512,
     batch=64,
     workers=8,
     device=0,
-    project='/lustre/home/dterman/diplomski/experiments',
+    project='${PROJECT_ROOT}/experiments',
     name='gesture_yolo11n',
     exist_ok=True,
     pretrained=True,

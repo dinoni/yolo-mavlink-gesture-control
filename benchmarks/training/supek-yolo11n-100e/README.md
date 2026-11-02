@@ -23,6 +23,6 @@ Ovaj eksperiment je glavni trening modela za osam klasa gesti. Izveden je na SRC
 | ---: | ---: | ---: | ---: |
 | 0.99177 | 0.98809 | 0.99404 | 0.84537 |
 
-`args.yaml` i `results.csv` su izvorni artefakti izvođenja. Grafikoni prikazuju konvergenciju, P/R/F1/PR krivulje i matricu zabune. Binarne težine modela nisu uključene.
+`results.csv` je izvorni artefakt izvođenja. `args.yaml` čuva iste parametre, uz zamjenu lokalne Supek putanje s `<SUPEK_PROJECT_ROOT>`. Grafikoni prikazuju konvergenciju, P/R/F1/PR krivulje i matricu zabune. Binarne težine modela nisu uključene.
 
 Odvojeni test najboljeg modela dokumentiran je u `../../testing/supek-yolo11n/`.

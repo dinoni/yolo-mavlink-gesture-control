@@ -7,6 +7,8 @@
 
 cd "$PBS_O_WORKDIR"
 
+PROJECT_ROOT="${PROJECT_ROOT:?Set PROJECT_ROOT to the Supek project directory}"
+
 module load scientific/pytorch/2.0.0
 
 echo "=== HOST ==="
@@ -20,16 +22,16 @@ echo "=== YOLO11n TEST ==="
 apptainer exec --nv "$IMAGE_PATH" python3 -c "
 from ultralytics import YOLO
 
-model = YOLO('/lustre/home/dterman/diplomski/experiments/gesture_yolo11n/weights/best.pt')
+model = YOLO('${PROJECT_ROOT}/experiments/gesture_yolo11n/weights/best.pt')
 
 metrics = model.val(
-    data='/lustre/home/dterman/diplomski/dataset/data.yaml',
+    data='${PROJECT_ROOT}/dataset/data.yaml',
     split='test',
     imgsz=512,
     batch=64,
     workers=8,
     device=0,
-    project='/lustre/home/dterman/diplomski/experiments',
+    project='${PROJECT_ROOT}/experiments',
     name='gesture_yolo11n_test',
     exist_ok=True,
     plots=True,

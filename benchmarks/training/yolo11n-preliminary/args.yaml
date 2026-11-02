@@ -1,7 +1,7 @@
 task: detect
 mode: train
 model: yolo11n.pt
-data: C:\Users\User\Desktop\Diplomski\hand_gesture_ml\data\processed\yolo_gestures\data.yaml
+data: <LOCAL_PROJECT_ROOT>\data\processed\yolo_gestures\data.yaml
 epochs: 2
 time: null
 patience: 10
@@ -12,7 +12,7 @@ save_period: -1
 cache: false
 device: '0'
 workers: 0
-project: C:\Users\User\Desktop\Diplomski\hand_gesture_ml\experiments
+project: <LOCAL_PROJECT_ROOT>\experiments
 name: gesture_yolo26n_test
 exist_ok: false
 pretrained: true
@@ -112,4 +112,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: tracktrack.yaml
-save_dir: C:\Users\User\Desktop\Diplomski\hand_gesture_ml\experiments\gesture_yolo26n_test
+save_dir: <LOCAL_PROJECT_ROOT>\experiments\gesture_yolo26n_test

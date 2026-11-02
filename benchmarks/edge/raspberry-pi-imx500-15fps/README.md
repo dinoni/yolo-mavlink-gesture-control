@@ -30,7 +30,7 @@ Rezultat potvrđuje da pipeline održava konfiguriranih 15 FPS. Vrijednosti su e
 
 ```bash
 python benchmark_imx500.py \
-  --model /home/dino/imx500_output/network.rpk \
+  --model /putanja/do/network.rpk \
   --frames 300 \
   --warmup 30 \
   --fps 15 \

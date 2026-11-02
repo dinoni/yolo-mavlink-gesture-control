@@ -17,12 +17,19 @@ python test_safety_v2.py
 
 Glavnu kontrolnu skriptu ne pokretati na stvarnoj letjelici iz ovog repozitorija. Zahtijeva Sony IMX500 `network.rpk` model, Pi-specifične pakete (`picamera2`) i zasebno provjerenu ArduPilot/SITL konfiguraciju.
 
+Prije pokretanja integracijske skripte postavi putanju modela izvan Git-a:
+
+```bash
+export IMX500_MODEL_PATH="/putanja/do/network.rpk"
+export MAVLINK_ADDRESS="udpin:0.0.0.0:14550"
+```
+
 ## IMX500 benchmark
 
 Zaustavi glavnu gesture-control skriptu prije pokretanja, zatim na Pi-ju izvrši:
 
 ```bash
-python benchmark_imx500.py --model /home/dino/imx500_output/network.rpk --frames 300 --warmup 30 --fps 15 --csv imx500_benchmark.csv
+python benchmark_imx500.py --model /putanja/do/network.rpk --frames 300 --warmup 30 --fps 15 --csv imx500_benchmark.csv
 ```
 
 Skripta ne koristi MAVLink. Izmjeri prosjek, medijan, P95 i FPS za puni put od preuzimanja framea do IMX500 izlaza; to nije izolirana latencija samog AI akceleratora.

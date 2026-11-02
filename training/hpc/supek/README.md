@@ -6,4 +6,4 @@ Ove PBS skripte dokumentiraju GPU trening i odvojenu testnu evaluaciju na SRCE S
 - `test_yolo11n.pbs` — evaluacija najboljih težina na testnom skupu
 - `gpu_test.pbs` i `gpu_test_gpu.pbs` — provjere GPU okruženja
 
-Skripte očekuju da je Apptainer image postavljen kroz varijablu `IMAGE_PATH`. Putanje na Supeku su specifične za korisničko okruženje i služe kao povijesni zapis reproducibilnog procesa, a ne kao univerzalna naredba za pokretanje.
+Skripte očekuju da su postavljene varijable `IMAGE_PATH` (Apptainer image) i `PROJECT_ROOT` (korijenska mapa projekta na Supeku). Lokalna korisnička imena i putanje nisu objavljeni.
