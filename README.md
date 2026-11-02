@@ -30,24 +30,27 @@ HaGRID v2 -> priprema/validacija podataka -> YOLO11n trening -> evaluacija
 
 Detaljnije: [arhitektura](docs/architecture.md) i [sigurnosne napomene](docs/safety.md).
 
-## Preliminarni rezultat treninga
+## Trening i testiranje na SRCE Supeku
 
-Evidentirani test s YOLO11n, slikama veličine 512 px, osam klasa i GPU uređajem zabilježio je nakon dvije epohe:
+Glavni model je treniran 100 epoha na SRCE Supek GPU sustavu s NVIDIA A100-SXM4-40GB grafičkom karticom. Korišteni su YOLO11n, slike od 512 px, batch 64, osam CPU jezgri, seed 42, PyTorch 2.0.0 i Ultralytics 8.4.150.
+
+Neovisno testiranje najboljeg modela na testnom skupu s 35 500 slika i 42 965 instanci zabilježilo je:
 
 | Metrika | Vrijednost |
 | --- | ---: |
-| Precision | 0.97689 |
-| Recall | 0.96543 |
-| mAP@50 | 0.98779 |
-| mAP@50-95 | 0.81389 |
+| Precision | 0.991 |
+| Recall | 0.990 |
+| mAP@50 | 0.993996 |
+| mAP@50-95 | 0.854261 |
 
-Ovo je kratki preliminarni test, a ne konačna usporedna evaluacija. Potpuni zapis i ograničenja nalaze se u [benchmark dokumentaciji](benchmarks/training/yolo11n-preliminary/README.md).
+Potpuni artefakti treninga nalaze se u [trening benchmarku](benchmarks/training/supek-yolo11n-100e/README.md), a rezultati odvojenog testnog skupa u [test benchmarku](benchmarks/testing/supek-yolo11n/README.md).
 
 ## Struktura
 
 ```text
 training/                 Priprema podataka, validacija i trening
 benchmarks/               Reproducibilni zapisi i rezultati eksperimenata
+training/hpc/supek/       PBS skripte za Supek GPU trening i testiranje
 edge/sony-imx500/         Metadata za edge target; binarni model nije u repozitoriju
 edge/raspberry-pi/        SafetyManager, SITL kontrolna logika i testovi
 docs/                     Arhitektura i sigurnosne napomene

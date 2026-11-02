@@ -1,0 +1,35 @@
+#!/bin/bash
+#PBS -N yolo_gpu_test
+#PBS -q gpu-test
+#PBS -l select=1:ncpus=1:ngpus=1:mem=16gb
+#PBS -l walltime=00:05:00
+#PBS -j oe
+
+cd "$PBS_O_WORKDIR"
+
+module load scientific/pytorch/2.0.0
+
+echo "=== HOST ==="
+hostname
+
+echo "=== NVIDIA-SMI ==="
+nvidia-smi
+
+echo "=== PYTORCH ==="
+
+apptainer exec --nv "$IMAGE_PATH" python3 -c "
+import torch
+import ultralytics
+import cv2
+
+print('PyTorch:', torch.__version__)
+print('CUDA:', torch.version.cuda)
+print('CUDA available:', torch.cuda.is_available())
+
+if torch.cuda.is_available():
+    print('GPU:', torch.cuda.get_device_name(0))
+    print('VRAM:', round(torch.cuda.get_device_properties(0).total_memory / 1024**3, 2), 'GB')
+
+print('Ultralytics:', ultralytics.__version__)
+print('OpenCV:', cv2.__version__)
+"

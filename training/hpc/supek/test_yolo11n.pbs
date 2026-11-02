@@ -1,0 +1,52 @@
+#!/bin/bash
+#PBS -N yolo11n_test
+#PBS -q gpu
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=08:00:00
+#PBS -j oe
+
+cd "$PBS_O_WORKDIR"
+
+module load scientific/pytorch/2.0.0
+
+echo "=== HOST ==="
+hostname
+
+echo "=== GPU ==="
+nvidia-smi
+
+echo "=== YOLO11n TEST ==="
+
+apptainer exec --nv "$IMAGE_PATH" python3 -c "
+from ultralytics import YOLO
+
+model = YOLO('/lustre/home/dterman/diplomski/experiments/gesture_yolo11n/weights/best.pt')
+
+metrics = model.val(
+    data='/lustre/home/dterman/diplomski/dataset/data.yaml',
+    split='test',
+    imgsz=512,
+    batch=64,
+    workers=8,
+    device=0,
+    project='/lustre/home/dterman/diplomski/experiments',
+    name='gesture_yolo11n_test',
+    exist_ok=True,
+    plots=True,
+    save_json=True
+)
+
+print('=== TEST RESULTS ===')
+print('mAP50:', metrics.box.map50)
+print('mAP50-95:', metrics.box.map)
+
+print('=== PER CLASS ===')
+for i, name in enumerate(model.names.values()):
+    print(
+        name,
+        'P=', round(metrics.box.p[i], 4),
+        'R=', round(metrics.box.r[i], 4),
+        'mAP50=', round(metrics.box.ap50[i], 4),
+        'mAP50-95=', round(metrics.box.ap[i], 4)
+    )
+"

@@ -1,0 +1,42 @@
+#!/bin/bash
+#PBS -N yolo11n
+#PBS -q gpu
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=48:00:00
+#PBS -j oe
+
+cd "$PBS_O_WORKDIR"
+
+module load scientific/pytorch/2.0.0
+
+echo "=== HOST ==="
+hostname
+
+echo "=== GPU ==="
+nvidia-smi
+
+echo "=== TRAINING YOLO11n ==="
+
+apptainer exec --nv "$IMAGE_PATH" python3 -c "
+from ultralytics import YOLO
+
+model = YOLO('/lustre/home/dterman/diplomski/models/yolo11n.pt')
+
+model.train(
+    data='/lustre/home/dterman/diplomski/dataset/data.yaml',
+    epochs=100,
+    imgsz=512,
+    batch=64,
+    workers=8,
+    device=0,
+    project='/lustre/home/dterman/diplomski/experiments',
+    name='gesture_yolo11n',
+    exist_ok=True,
+    pretrained=True,
+    patience=20,
+    seed=42,
+    cache=False,
+    save_period=10,
+    plots=True
+)
+"

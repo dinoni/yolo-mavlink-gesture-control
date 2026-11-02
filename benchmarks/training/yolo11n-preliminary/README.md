@@ -1,6 +1,6 @@
-# YOLO11n preliminarni trening
+# Arhiva: lokalni YOLO11n probni trening
 
-Ova mapa čuva originalni zapis eksperimenta koji je pokrenut s modelom `yolo11n.pt`.
+Ova mapa čuva kratki lokalni probni eksperiment s modelom `yolo11n.pt`. Nije glavni rezultat projekta; za stvarni 100-epohni Supek trening vidi `../supek-yolo11n-100e/`.
 
 ## Konfiguracija
 
