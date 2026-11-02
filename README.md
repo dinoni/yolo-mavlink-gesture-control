@@ -45,6 +45,19 @@ Neovisno testiranje najboljeg modela na testnom skupu s 35 500 slika i 42 965 in
 
 Potpuni artefakti treninga nalaze se u [trening benchmarku](benchmarks/training/supek-yolo11n-100e/README.md), a rezultati odvojenog testnog skupa u [test benchmarku](benchmarks/testing/supek-yolo11n/README.md).
 
+## Raspberry Pi 4 edge benchmark
+
+Sony IMX500 pipeline izmjeren je na Raspberry Pi 4 pri stvarnoj radnoj konfiguraciji od 640 × 480 i 15 FPS, s `network.rpk` modelom veličine 3,00 MiB.
+
+| Metrika | Rezultat |
+| --- | ---: |
+| Srednji camera-to-output ciklus | 66,59 ms |
+| Medijan | 66,47 ms |
+| P95 | 68,89 ms |
+| Propusnost | 15,02 FPS |
+
+Mjerenje ne uključuje MAVLink ni upravljanje letjelicom. Ono pokriva puni put kamere i IMX500 izlaza, a ne izoliranu latenciju samog AI akceleratora. Detalji: [edge benchmark](benchmarks/edge/raspberry-pi-imx500-15fps/README.md).
+
 ## Struktura
 
 ```text
