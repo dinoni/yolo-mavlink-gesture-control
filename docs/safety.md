@@ -4,13 +4,13 @@ Ovaj projekt nije spreman za nekontrolirani stvarni let. Sva testiranja upravlja
 
 ## Dosad zabilježeno ponašanje
 
-Prema spremljenim SITL logovima, postojeća Pi implementacija ima sljedeću zamišljenu logiku:
+Prema provjerenom izvornom kodu i spremljenim SITL logovima, Pi implementacija ima sljedeću logiku:
 
 - RC5 prekidač gasi AI upravljanje.
 - Kod ručnog overridea sustav traži prijelaz iz `GUIDED` u `LOITER` i čeka potvrdu ArduPilot heartbeat porukom.
 - Nakon overridea, ponovna autorizacija AI-a tijekom leta je blokirana do slijetanja, disarma i reseta.
 
-Ove stavke bit će provjerene prema stvarnom kodu `SafetyManager` prije nego što se opišu kao konačno implementirano ponašanje.
+`SafetyManager V2` ima samostalni test koji pokriva gubitak telemetrije, izlazak iz `GUIDED` moda, gašenje RC dozvole, gubitak dlana, RTL zaključavanje te uvjete autorizacije i polijetanja. Testiranje modula ne dokazuje sigurnost stvarnog leta.
 
 ## Otvorene provjere
 

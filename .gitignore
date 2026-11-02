@@ -17,6 +17,7 @@ data/
 *.engine
 *.pbtxt
 *.blob
+*.rpk
 
 # Generated outputs and local logs
 captured_images/

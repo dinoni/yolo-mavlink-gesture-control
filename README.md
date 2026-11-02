@@ -2,7 +2,7 @@
 
 Diplomski projekt sustava za prepoznavanje gesti i upravljanje dronom na rubnom uređaju (*edge AI*). Projekt povezuje pripremu podataka i treniranje YOLO modela s inferencijom na Raspberry Pi 4, MAVLink komunikacijom i sigurnosno ograničenim upravljanjem ArduPilotom.
 
-> Status: aktivan razvoj. Trening dio i preliminarni rezultati su objavljeni; izvorni kod s Raspberry Pi-ja bit će dodan nakon pregleda konfiguracije i sigurnosne provjere.
+> Status: aktivan razvoj. Objavljeni su trening dio, preliminarni rezultati i Pi kontrolna logika. Binarni model i hardverske konfiguracije ostaju izostavljeni.
 
 ## Što projekt obuhvaća
 
@@ -11,7 +11,7 @@ Diplomski projekt sustava za prepoznavanje gesti i upravljanje dronom na rubnom 
 - treniranje YOLO11n modela za osam gesti
 - lokalne prototipe detekcije i 2D simulacije praćenja dlana
 - pripremu modela za Sony IMX500 target
-- planiranu integraciju: ONNX/kvantizirana inferencija na Raspberry Pi 4, MAVLink, ArduPilot i `SafetyManager`
+- Raspberry Pi 4 kontrolnu logiku: Sony IMX500 inferenciju, MAVLink, ArduPilot i `SafetyManager V2`
 
 ## Arhitektura
 
@@ -49,6 +49,7 @@ Ovo je kratki preliminarni test, a ne konačna usporedna evaluacija. Potpuni zap
 training/                 Priprema podataka, validacija i trening
 benchmarks/               Reproducibilni zapisi i rezultati eksperimenata
 edge/sony-imx500/         Metadata za edge target; binarni model nije u repozitoriju
+edge/raspberry-pi/        SafetyManager, SITL kontrolna logika i testovi
 docs/                     Arhitektura i sigurnosne napomene
 ```
 
@@ -69,7 +70,7 @@ Repozitorij namjerno ne sadrži:
 - izvorni HaGRID dataset i generirane slike/oznake
 - `.pt`, `.onnx`, `.pbtxt` i druge velike binarne modele
 - offline Python pakete
-- Pi-specifične putanje, serijske portove, mrežne adrese, logove i eventualne tajne
+- binarni `network.rpk` model, lokalne logove i eventualne tajne
 
 Veliki modeli mogu se kasnije objaviti zasebno, uz verziju, checksum i upute za preuzimanje.
 
